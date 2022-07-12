@@ -1,7 +1,7 @@
 FROM node:alpine
 
 
-RUN apk add --update python3 py3-pip
+RUN apk add --update python3 py3-pip make g++
 
 
 RUN mkdir -p /usr/src/node-app && chown -R node:node /usr/src/node-app
