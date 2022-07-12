@@ -10,7 +10,7 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
     logger.info(`Listening to port ${config.port}`);
   });
 });
-
+//this is cool
 const exitHandler = () => {
   if (server) {
     server.close(() => {
