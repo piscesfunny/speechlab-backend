@@ -2,6 +2,8 @@ const AWS = require("aws-sdk")
 const { orderBy } = require("lodash")
 const config = require("../config/config")
 const catchAsync = require("../utils/catchAsync");
+const httpStatus = require("http-status");
+const { conversationService } = require("../services");
 
 
 const s3Credentials = new AWS.Credentials({
@@ -83,7 +85,15 @@ const finalizeMultipartUpload = catchAsync(async (req, res) => {
 
   await s3.completeMultipartUpload(multipartParams).promise()
 
-  res.send()
+  let conversationName = fileKey.replace(/^.*[\\\/]/, '').split(".")[0]
+  const conversationBody = {
+    name: conversationName,
+    rawFilePath: fileKey,
+    user: req.user
+  }
+  const conversation = await conversationService.createConversation(conversationBody);
+
+  res.status(httpStatus.CREATED).send({ conversation });
 })
 
 module.exports = {
