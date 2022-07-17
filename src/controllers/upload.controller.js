@@ -18,10 +18,11 @@ const BUCKET_NAME = config.aws.s3.bucketName
 
 const initializeMultipartUpload = catchAsync(async (req, res) => {
   const { name } = req.body
+  const fileName = `${Date.now()}_${name}`
 
   const multipartParams = {
     Bucket: BUCKET_NAME,
-    Key: `${name}`,
+    Key: `${fileName}`,
     ACL: "public-read",
   }
 
