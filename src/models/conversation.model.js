@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-const { userSchema } = require('./user.model');
 const { toJSON, paginate } = require('./plugins');
 
 const conversationSchema = mongoose.Schema(
@@ -18,7 +17,10 @@ const conversationSchema = mongoose.Schema(
     duration: {
       type: String
     },
-    user: userSchema,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
   },
   {
     timestamps: true,
