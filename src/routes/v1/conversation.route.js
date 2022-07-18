@@ -7,7 +7,7 @@ const router = express.Router();
 router
   .route('/')
   .post(auth('manageConversations'), conversationController.createConversation)
-  .get(auth('manageConversations'), conversationController.getAllConversations)
+  .get(auth('manageAllConversations'), conversationController.getAllConversations)
 
 router
   .route('/:userId/conversations')
