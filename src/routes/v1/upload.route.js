@@ -169,12 +169,12 @@ module.exports = router;
  *               fileId: FZOTbjkwBfqMpQWn84TFwH2I_uvOiqYIQ7CqoivRdeF9OiujfeRCMsQcBS3r09o5gHLpnNk_WUh0jNyBWd7qL6Y8m75ixBJ6nzpDsKqkpr.vAhueZymcms0MyuTPI7A7
  *               parts: [
  *                 {
- *                   PartNumber: 1
- *                   ETag: 1ae8648057211da6c0b7a423dc58d682
+ *                   "PartNumber": 1,
+ *                   "ETag": 1ae8648057211da6c0b7a423dc58d682
  *                 },
  *                 {
- *                   PartNumber: 2
- *                   ETag: 3e67121dc11358f93eb1c08eac19529b
+ *                   "PartNumber": 2,
+ *                   "ETag": 3e67121dc11358f93eb1c08eac19529b
  *                 }
  *               ]
  *     responses:
