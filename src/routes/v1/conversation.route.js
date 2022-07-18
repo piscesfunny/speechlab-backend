@@ -61,8 +61,8 @@ module.exports = router;
  *         $ref: '#/components/responses/Forbidden'
  *
  *   get:
- *     summary: Get conversations
- *     description: Logged in users retrieve only their own conversations. Only admins can retrieve all conversations.
+ *     summary: Get all conversations
+ *     description: Only admins can retrieve all conversations.
  *     tags: [Conversations]
  *     security:
  *       - bearerAuth: []
@@ -123,7 +123,77 @@ module.exports = router;
 
 /**
  * @swagger
- * /conversations/{id}:
+ * /conversations/{userId}/conversations:
+ *   get:
+ *     summary: Get user specific conversations
+ *     description: Logged in users retrieve only their own conversations. Only admins can retrieve all conversations.
+ *     tags: [Conversations]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User id
+ *       - in: query
+ *         name: name
+ *         schema:
+ *           type: string
+ *         description: Conversation name
+ *       - in: query
+ *         name: sortBy
+ *         schema:
+ *           type: string
+ *         description: sort by query in the form of field:desc/asc (ex. name:asc)
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         default: 10
+ *         description: Maximum number of users
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Page number
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 results:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Conversation'
+ *                 page:
+ *                   type: integer
+ *                   example: 1
+ *                 limit:
+ *                   type: integer
+ *                   example: 10
+ *                 totalPages:
+ *                   type: integer
+ *                   example: 1
+ *                 totalResults:
+ *                   type: integer
+ *                   example: 1
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ */
+
+/**
+ * @swagger
+ * /conversations/{conversationId}:
  *   get:
  *     summary: Get a conversation
  *     description: Logged in users can fetch only their own conversation information. Only admins can fetch other conversations.
@@ -132,7 +202,7 @@ module.exports = router;
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: conversationId
  *         required: true
  *         schema:
  *           type: string

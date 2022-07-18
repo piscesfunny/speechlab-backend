@@ -1,5 +1,40 @@
 components:
   schemas:
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        rawFilePath:
+          type: string
+        duration:
+          type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+              format: email
+            name:
+              type: string
+            role:
+              type: string
+              enum: [ user, admin ]
+      example:
+        id: 62d47bdfa7e32149c9f5c896
+        name: 1658092404943_foo
+        rawFilePath: 1658092404943_foo.mp3
+        duration: 00:42:19
+        user:
+          id: 5ebac534954b54139806c112
+          email: fake@example.com
+          name: fake name
+          role: user
+
     User:
       type: object
       properties:
