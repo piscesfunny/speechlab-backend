@@ -4,6 +4,7 @@ const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const uploadRoute = require('./upload.route');
 const conversationRoute = require('./conversation.route');
+const transcriptionRoute = require('./transcription.route');
 const config = require('../../config/config');
 
 const router = express.Router();
@@ -25,6 +26,10 @@ const defaultRoutes = [
     path: '/conversations',
     route: conversationRoute,
   },
+  {
+    path: '/transcriptions',
+    route: transcriptionRoute,
+  }
 ];
 
 const devRoutes = [
