@@ -13,9 +13,9 @@ const createTranscription = catchAsync(async (req, res) => {
 });
 
 const getTranscriptions = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name']);
-  const originalOptions = pick(req.query, ['sortBy', 'limit', 'page']);
-  const options = {...originalOptions, 'populate': 'conversation'}
+  const originalFilter = pick(req.query, ['speaker']);
+  const filter = {...originalFilter, 'conversation': req.params.conversationId}
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await transcriptionService.queryTranscriptions(filter, options);
   res.send(result);
 });
