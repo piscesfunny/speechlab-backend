@@ -35,6 +35,30 @@ components:
           name: fake name
           role: user
 
+    Transcription:
+      type: object
+      properties:
+        id:
+          type: string
+        language:
+          type: string
+          enum: [english, spanish]
+        speaker:
+          type: string
+        content:
+          type: string
+        timeline:
+          type: string
+        conversation:
+          type: string
+      example:
+        id: 62d7267010cc912b82a04cf3
+        language: english
+        speaker: Serhill Makei
+        content: Great. Well, I introduce myself. Maybe I'll give you a chance to introduce yourself.
+        timeline: 00:00:22
+        conversation: 62d47bdfa7e32149c9f5c896
+
     User:
       type: object
       properties:
